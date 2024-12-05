@@ -13,19 +13,19 @@ sorted_rhs = sorted(right_hand_side)
 
 distance1 = 0
 distance2 = 0
+similarity = 0
 
 for i, j in zip(sorted_rhs, sorted_lhs):
-
-    max_val = max(i, j)
-    min_val = min(i, j)
-    distance1 += max_val - min_val
+    distance1 += abs(i - j)
 
 print(distance1)
 
-for i in range(len(sorted_lhs)):
-    distance2 += sorted_rhs[i] - sorted_lhs[i]
-    if sorted_rhs[i] - sorted_lhs[i] < 0:
-        print("negative")
-        break
+for i in sorted_lhs:
+    count = 0
+    for j in sorted_rhs:
+        if i == j:
+            count += 1
+    
+    similarity += i * count
 
-print(distance2) 
+print(similarity)
